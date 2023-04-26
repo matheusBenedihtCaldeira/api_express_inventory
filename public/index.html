@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+:root {
+  --primary-color: rgb(17, 86, 102);
+  --primary-color-darker: rgb(9, 48, 58);
+}
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+}
+
+p{
+  margin: 20px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--primary-color);
+  font-family: "Open sans", sans-serif;
+  font-size: 1.3em;
+  line-height: 1.5em;
+}
+
+.container {
+  max-width: 640px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+td{
+  padding: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <section class="container">
+        <div id = "produtos"></div>
+    </section>
+    
+
+    <script>
+        const table = document.getElementById('produtos');
+        const url = "http://localhost:8080/estoque"
+
+        fetch(url)
+            .then((resp)=>resp.json())
+            .then(function(data){                
+                return data.map(function(user) {
+                    const tr = document.createElement('tr')
+                    let td = document.createElement('td');
+                    tr.appendChild(td);
+                    td.innerHTML = `Produto: ${user.nome}`
+                    tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.innerHTML = `Preço: R$${user.preco}`
+                    tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.innerHTML = `Quantidade: ${user.quantidade}`
+                    tr.appendChild(td);
+                    table.appendChild(tr)
+                })
+            })
+            .catch((error) =>
+            {console.log(error)})
+    </script>
+</body>
+</html>

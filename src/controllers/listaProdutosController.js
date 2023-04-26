@@ -1,4 +1,5 @@
 const database = require('../database')
+const path = require('path')
 
 exports.estoque = (req, res) => {
     res.send(database.getProdutos())
@@ -16,4 +17,9 @@ exports.alterarProuto = (req,res) => {
     const id = req.params.id;
     const newData = database.updateProduto(id,req.body);
     res.send(`Produto atualizado - ID: ${id}`)
+}
+
+exports.listaDeProdutos = (req,res) =>{
+    const htmlFilePath = path.join(__dirname, '../../public','index.html');
+    res.sendFile(htmlFilePath)
 }
