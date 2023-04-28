@@ -10,11 +10,9 @@ exports.register = async(req, res) => {
     });
     try{
         await produto.save();
-        console.log(produto)
-        res.send(console.log("Produto salvo"))
+        res.send(`${produto}\nProduto salvo com sucesso!`)
     
     }catch(err){
-        console.log(err)
-        res.send(console.log(err))
+        res.send(err)
     }
 }
