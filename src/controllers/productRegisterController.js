@@ -1,5 +1,11 @@
 const ProductModel = require('../models/ProductModel.js');
 
+exports.page = (req,res)=>{
+    res.render('index')
+}
+
+
+//Função responsável por registrar um produto no banco de dados
 exports.register = async(req, res) => {
     const {nome,preco,quantidade} = req.body;
 

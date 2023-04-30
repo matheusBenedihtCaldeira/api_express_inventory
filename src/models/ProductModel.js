@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+//Schema de produtos
 const ProductSchema = new mongoose.Schema({
     _id: {type: Number},
     nome: {
@@ -14,7 +15,7 @@ const ProductSchema = new mongoose.Schema({
         required: true
     }
 })
-
+//Adiciona um ID incremental para cada produto registrado
 ProductSchema.pre('save', async function(next){
     if(!this._id){
         const count = await ProductModel.countDocuments();
@@ -22,6 +23,6 @@ ProductSchema.pre('save', async function(next){
     }
     next()
 })
-
+//Transofrma o Schema em model
 const ProductModel = mongoose.model('Produtos', ProductSchema);
 module.exports = ProductModel;
