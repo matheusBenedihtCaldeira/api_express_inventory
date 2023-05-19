@@ -3,8 +3,9 @@ const {OpenAIApi} = require('openai');
 const configAi = require('../config/openAi.js')
 const openAi = new OpenAIApi(configAi);
 
+//Gera automaticamente a descrição do produto a partir do seu nome
 const gerarDescricao = async (nomeDoProduto) => {
-    const prompt = `Pense como um vendedor fazendo a descrição do seguinte produto ${nomeDoProduto}`
+    const prompt = `Gere a descrição do seguinte produto ${nomeDoProduto}`
 
     try{
         const completion = await openAi.createCompletion({
@@ -17,14 +18,7 @@ const gerarDescricao = async (nomeDoProduto) => {
         console.log(error);
     }
 };
-
-
-exports.page = (req,res)=>{
-    res.render('index')
-}
-
-
-//Função responsável por registrar um produto no banco de dados
+//Armazena o produto no banco de dados
 exports.register = async(req, res) => {
     const {nome,preco,quantidade} = req.body;
 
@@ -42,3 +36,9 @@ exports.register = async(req, res) => {
         res.send(err)
     }
 }
+
+exports.page = (req,res)=>{
+    res.render('index')
+}
+
+
