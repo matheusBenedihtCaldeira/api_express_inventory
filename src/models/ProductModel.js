@@ -13,6 +13,10 @@ const ProductSchema = new mongoose.Schema({
     quantidade:{
         type: Number, 
         required: true
+    },
+    descricao:{
+        type: String, 
+        required: false
     }
 })
 //Adiciona um ID incremental para cada produto registrado
